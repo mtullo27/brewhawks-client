@@ -1,12 +1,5 @@
 import React from "react"
-import {
-    Card,
-    CardContent,
-    Typography,
-    CardActions,
-    Button,
-    Box
-} from "@mui/material"
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material"
 import { styled } from "@mui/system"
 
 const StyledCard = styled(Card)({
@@ -19,32 +12,102 @@ const StyledCard = styled(Card)({
     flexDirection: "column"
 })
 
-const StyledCardActions = styled(CardActions)({
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
-    padding: "0 16px 16px"
-})
-
 const PlayerCard = ({ player }) => {
     return (
         <StyledCard>
             <Box flexGrow={1}>
                 <CardContent style={{ marginBottom: 0, paddingBottom: 0 }}>
-                    <Typography variant="h5">{player.name}</Typography>
-                    <Typography variant="body1">
-                        {player.description}
+                    <Typography
+                        variant="h5"
+                        align="left"
+                        sx={{ paddingBottom: "1rem" }}
+                    >
+                        #{player.number} {player.name}
                     </Typography>
-                    <Typography variant="subtitle1">
-                        Submitted by: {player.submitter}
-                    </Typography>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="flex-start"
+                        alignItems="flex-start"
+                    >
+                        <Grid
+                            container
+                            item
+                            xs={2}
+                            direction="column"
+                            justifyContent="flex-start"
+                            alignItems="flex-start"
+                        >
+                            <Typography variant="h6" align="left">
+                                GP
+                            </Typography>
+                            <Typography variant="body1" align="left">
+                                {player.GP}
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            container
+                            item
+                            xs={2}
+                            direction="column"
+                            justifyContent="flex-start"
+                            alignItems="flex-start"
+                        >
+                            <Typography variant="h6" align="left">
+                                G
+                            </Typography>
+                            <Typography variant="body1" align="left">
+                                {player.G}
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            container
+                            item
+                            xs={2}
+                            direction="column"
+                            justifyContent="flex-start"
+                            alignItems="flex-start"
+                        >
+                            <Typography variant="h6" align="left">
+                                A
+                            </Typography>
+                            <Typography variant="body1" align="left">
+                                {player.A}
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            container
+                            item
+                            xs={2}
+                            direction="column"
+                            justifyContent="flex-start"
+                            alignItems="flex-start"
+                        >
+                            <Typography variant="h6" align="left">
+                                PTS
+                            </Typography>
+                            <Typography variant="body1" align="left">
+                                {player.PTS}
+                            </Typography>
+                        </Grid>
+                        <Grid
+                            container
+                            item
+                            xs={2}
+                            direction="column"
+                            justifyContent="flex-start"
+                            alignItems="flex-start"
+                        >
+                            <Typography variant="h6" align="left">
+                                PIM
+                            </Typography>
+                            <Typography variant="body1" align="left">
+                                {player.PIM}
+                            </Typography>
+                        </Grid>
+                    </Grid>
                 </CardContent>
             </Box>
-            <StyledCardActions>
-                <Typography variant="subtitle1">
-                    Votes: {player.votes}
-                </Typography>
-            </StyledCardActions>
         </StyledCard>
     )
 }
