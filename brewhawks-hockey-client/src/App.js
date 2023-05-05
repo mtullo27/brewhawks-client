@@ -1,6 +1,7 @@
 import "./App.css"
 import { Grid } from "@mui/material"
 import PlayerList from "./components/PlayerList"
+import Calendar from "./components/Calendar"
 import CardCarousel from "./components/CardCarousel"
 
 const hockeyGames = [
@@ -70,9 +71,11 @@ function App() {
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ width: "90%" }}
+                sx={{ width: "95vw", padding: "3rem" }}
             >
-                <CardCarousel cards={hockeyGames} />
+                <Grid item xs={12} align="left">
+                    <CardCarousel hockeyGames={hockeyGames} />
+                </Grid>
                 <PlayerList players={mockPlayer} />
             </Grid>
         </>

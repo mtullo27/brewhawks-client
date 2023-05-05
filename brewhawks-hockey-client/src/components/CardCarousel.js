@@ -3,10 +3,10 @@ import { Splide, SplideSlide } from "@splidejs/react-splide"
 import "@splidejs/splide/dist/css/themes/splide-default.min.css"
 import useStyles from "./styles/CardCarouselStyles"
 import "./styles/CardCarouselStyles.css"
-import { Card, CardContent, Typography } from "@mui/material"
-import { format } from "date-fns"
+import { Card, CardHeader, CardContent, Typography } from "@mui/material"
+import { format, parseISO } from "date-fns"
 
-const CardCarousel = ({ cards = [] }) => {
+const CardCarousel = ({ hockeyGames = [] }) => {
     const classes = useStyles()
 
     const onActiveSlide = (e) => {
@@ -27,7 +27,7 @@ const CardCarousel = ({ cards = [] }) => {
     return (
         <Splide
             options={{
-                perPage: 1,
+                perPage: 5,
                 perMove: 1,
                 gap: "1rem",
                 focus: "center",
@@ -36,8 +36,8 @@ const CardCarousel = ({ cards = [] }) => {
                 rewind: true,
                 rewindSpeed: 1000,
                 padding: {
-                    left: "calc(50% - 50px)",
-                    right: "calc(50% - 50px)",
+                    left: "2rem",
+                    right: "2rem",
                     top: "1rem",
                     bottom: "1rem"
                 }
@@ -45,33 +45,21 @@ const CardCarousel = ({ cards = [] }) => {
             onActive={(e) => onActiveSlide(e)}
             className={classes.splidePagination}
         >
-            {cards.map((game, index) => (
+            {hockeyGames.map((game, index) => (
                 <SplideSlide key={index}>
-                    <Card
-                        className={`${classes.EnhancementCard} slide-${index}`}
-                    >
+                    <Card key={game.id} sx={{ mb: 2 }}>
+                        <CardHeader
+                            title={
+                                game.date && format(parseISO(game.date), "PPP")
+                            }
+                            subheader={game.time}
+                        />
                         <CardContent>
-                            <Typography
-                                variant="h6"
-                                component="div"
-                                align="left"
-                            >
-                                {game.date &&
-                                    format(new Date(game.date), "PPP")}
+                            <Typography variant="h6">
+                                {`${game.awayTeam} vs ${game.homeTeam}`}
                             </Typography>
-                            <Typography
-                                variant="h6"
-                                component="div"
-                                align="left"
-                            >
-                                {game.homeTeam} vs {game.awayTeam}
-                            </Typography>
-                            <Typography
-                                variant="body1"
-                                color="text.secondary"
-                                align="left"
-                            >
-                                {game.location} @ {game.time}
+                            <Typography variant="body1">
+                                {game.location}
                             </Typography>
                         </CardContent>
                     </Card>
