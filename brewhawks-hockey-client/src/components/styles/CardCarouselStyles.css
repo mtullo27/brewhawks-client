@@ -1,5 +1,5 @@
 .splide__arrow {
-    background-color: #717073!important;
+    background-color: #4B72A2!important;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -17,7 +17,7 @@
   }
   
   .splide__pagination__page {
-    background-color: #df7a00!important;
+    background-color: #4B72A2!important;
   }
 
   .splide__pagination__page:not(.is-active) {

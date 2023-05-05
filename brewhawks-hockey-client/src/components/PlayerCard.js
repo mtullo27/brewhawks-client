@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, CardContent, Typography, Box, Grid } from "@mui/material"
+import { Card, CardContent, Typography, Box, Grid, Chip } from "@mui/material"
 import { styled } from "@mui/system"
 
 const StyledCard = styled(Card)({
@@ -13,16 +13,52 @@ const StyledCard = styled(Card)({
 })
 
 const PlayerCard = ({ player }) => {
+    const renderCaptainBadge = () => {
+        if (player.captain) {
+            return (
+                <Chip
+                    label="C"
+                    size="small"
+                    sx={{
+                        borderRadius: "15%",
+                        backgroundColor: "#4B72A2",
+                        color: "common.white",
+                        marginLeft: "14px"
+                    }}
+                />
+            )
+        }
+        if (player.assistantCaptain) {
+            return (
+                <Chip
+                    label="A"
+                    size="small"
+                    sx={{
+                        borderRadius: "15%",
+                        backgroundColor: "#4B72A2",
+                        color: "common.white",
+                        marginLeft: "14px"
+                    }}
+                />
+            )
+        }
+        return null
+    }
+
     return (
         <StyledCard>
             <Box flexGrow={1}>
-                <CardContent style={{ marginBottom: 0, paddingBottom: 0 }}>
+                <CardContent style={{ marginBottom: 0, paddingBottom: "1rem" }}>
                     <Typography
                         variant="h5"
                         align="left"
-                        sx={{ paddingBottom: "1rem" }}
+                        sx={{
+                            paddingBottom: "1rem",
+                            display: "flex",
+                            alignItems: "center"
+                        }}
                     >
-                        #{player.number} {player.name}
+                        #{player.number} {player.name} {renderCaptainBadge()}
                     </Typography>
                     <Grid
                         container
